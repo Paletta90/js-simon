@@ -35,42 +35,43 @@ function cronometro() {
 
     }
     // Quando raggiungo 0 il tempo scade quindi tolgo tutto quello che è stampato a video
-    else if (chrono == -1) {
+    else {
 
         container.innerHTML = " ";
         chronometer.innerHTML = " ";
 
-    } else {
-
         // Stoppo la function cronometro
         clearInterval(stopWatch);
 
-        // Inserisco 5 numeri dal prompt
-        arrayUtente = numeriUtente();
+        setTimeout(function () {
+            // Inserisco 5 numeri dal prompt
+            arrayUtente = numeriUtente();
 
-        // Questo array contiene i numeri indovinati
-        arrayNumIndovinati = checkTwoArray();
+            // Questo array contiene i numeri indovinati
+            arrayNumIndovinati = checkTwoArray();
 
-        // Se non ho indovinato nessun numero
-        if (arrayNumIndovinati.length == 0) {
+            // Se non ho indovinato nessun numero
+            if (arrayNumIndovinati.length == 0) {
 
-            container.innerHTML += `<div>Non ho indovinato nessun numero</div>`
+                container.innerHTML += `<div>Non ho indovinato nessun numero</div>`
 
-        // Se ne ho indovinato uno solo
-        } else if (arrayNumIndovinati.length == 1) {
+                // Se ne ho indovinato uno solo
+            } else if (arrayNumIndovinati.length == 1) {
 
-            container.innerHTML += `<div>Ho indovinato: ${arrayNumIndovinati.length} numero</div>`
-            container.innerHTML += `<div>Il numero indovinato è :</div><div>-${arrayNumIndovinati[0]}</div>`
+                container.innerHTML += `<div>Ho indovinato: ${arrayNumIndovinati.length} numero</div>`
+                container.innerHTML += `<div>Il numero indovinato è :</div><div>-${arrayNumIndovinati[0]}</div>`
 
-        // Se ne ho indovinato più di uno
-        } else {
-            container.innerHTML += `<div>Ho indovinato: ${arrayNumIndovinati.length} numeri</div>`
-            container.innerHTML += `<div>I numeri indovinati sono :</div>`
+                // Se ne ho indovinato più di uno
+            } else {
+                container.innerHTML += `<div>Ho indovinato: ${arrayNumIndovinati.length} numeri</div>`
+                container.innerHTML += `<div>I numeri indovinati sono :</div>`
 
-            for (let z = 0; z < arrayNumIndovinati.length; z++) {
-                container.innerHTML += `<div>- ${arrayNumIndovinati[z]}</div>`
+                for (let z = 0; z < arrayNumIndovinati.length; z++) {
+                    container.innerHTML += `<div>- ${arrayNumIndovinati[z]}</div>`
+                }
             }
-        }
+        }, 500)
+
     }
     // Contatore del cronometro che va a scendere
     chrono--;
@@ -86,7 +87,7 @@ function numeriUtente() {
         let num = parseInt(prompt(`Inserisci numero ${i + 1}: `));
 
         // Controllo se ho digitato un numero e se maggiore di zero e minore di 100
-        if (isNaN(num) || ( num <= 0 || num > 100) ) {
+        if (isNaN(num) || (num <= 0 || num > 100)) {
 
             alert("Inserire un numero corretto");
             // Faccio rispetere il ciclo un ulteriore volta
@@ -124,7 +125,7 @@ function checkTwoArray() {
 
 //Genera 5 num da 1 a 100 tutti diversi tra loro;
 function arrayRandomNum1to5() {
-    
+
     let array = [];
 
     for (i = 0; i < 5; i++) {
